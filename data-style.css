@@ -1,0 +1,82 @@
+/* General styles for the XML container */
+xml-rules {
+    display: block;
+    width: 100%;
+}
+
+/* Style for each rule block */
+rule {
+    display: block;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: lightgray;
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 75%;
+}
+
+/* Style for the title */
+title {
+    display: block;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Style for each heading */
+heading {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* Style for each description */
+description {
+    font-size: 1em;
+    margin-bottom: 15px;
+}
+
+/* Style for each example */
+example {
+    font-size: 1em;
+    color: blue;
+}
+
+gap1 {
+    display: block;
+    height: 15px;
+}
+
+gap2 {
+    display: block;
+    height: 15px;
+}
+
+
+
+@media screen and (min-width: 768px) {
+
+    xml-rules {
+        display: flex;
+        flex-flow: row wrap;
+    }
+
+    rule {
+        width: 45%;
+        margin: 2px;
+        margin-right: 5px;
+    }
+
+    title {
+        width: 100%;
+    }
+
+    rule1-2, rule3-4, rule5-6 {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 5px;
+    }
+
+    
+}

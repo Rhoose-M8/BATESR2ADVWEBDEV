@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Page Title-->
+    <title>My-Research - ITWD6.408 - BATESR2</title>
+    <!--Page Icon-->
+    <link rel="icon" href="Images/pageicon.png" type="image/x-icon">
+
+    <!--Insert Bootstrap CSS here-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!--Insert Bootstrap Icons CSS-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!--Insert Bootstrap Javascript and JQuery-->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <style>
+        /*PUT ALL CSS STYLING IN THIS SECTION HERE*/
+        :root {
+            --navbar-color: #DAF7A6;
+        }
+
+        /*This pushes the drop down section of the navbar to the "top" of the screen so it is visible*/
+        #navbarNavAltMarkup {
+            z-index: 2;
+        }
+
+        .flip-box {
+            background-color: transparent;
+            width: 100%;
+            height: 55vh;
+            border: 1px solid #f1f1f1;
+            perspective: 1000px;
+        }
+
+        .flip-box-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+
+        .flip-box:hover .flip-box-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-box-front,
+        .flip-box-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+
+        .flip-box-front {
+            background-color: #bbb;
+            color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100%;
+            text-align: center;
+        }
+
+        .flip-box-back {
+            background-color: lightgray;
+            color: black;
+            transform: rotateY(180deg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: left;
+            height: 100%;
+        }
+
+        .scroll-box {
+            height: 90%;
+            width: 90%;
+            padding: 10px;
+            overflow-y: auto;
+            /* Optional: Add some transparency */
+            border-radius: 10px;
+            /* Optional: Rounded corners */
+            scrollbar-width: thin;
+            /* For Firefox */
+        }
+
+        .scroll-box::-webkit-scrollbar {
+            width: 8px;
+            /* For Chrome, Safari, and Opera */
+        }
+
+        .scroll-box::-webkit-scrollbar-thumb {
+            background: #888;
+            /* Customize scrollbar color */
+            border-radius: 10px;
+        }
+
+        .scroll-box::-webkit-scrollbar-thumb:hover {
+            background: #555;
+            /* Color on hover */
+        }
+
+        #flipimg {
+            height: 30vh;
+            width: 80%;
+            margin-top: 20px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!--search area/search box/search button-->
+    <div class="collapse" id="collapseSearchBox" style="background-color: grey; padding: 10px;">
+        <div class="d-flex justify-content-center">
+            <input id="searchinput" type="text" style="width: 50vw;">
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $('#searchinput').on('keyup', function () {
+                // Get the search keyword and convert it to lowercase
+                let keywords = $(this).val().toLowerCase();
+
+                // Search through Main content divs
+                $('.searchable').filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(keywords) > -1);
+                });
+            });
+        });
+    </script>
+
+
+    <!--Navbar area-->
+    <!--Website: getboostrap.com -> components -> Navbar: https://getbootstrap.com/docs/5.3/components/navbar/ -->
+    <nav class="navbar navbar-expand-lg" style="height: 10vh; background-color: var(--navbar-color);">
+        <div class="container-fluid">
+
+            <!--Tagline-->
+            <a class="navbar-brand" href="index.html"><span class="bi bi-globe"></span>ITWD6.408</a>
+
+            <!--Search Button small screen-->
+            <button class="btn d-inline d-lg-none" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseSearchBox">
+                <span class=" fs-2 bi bi-search"></span>
+            </button>
+
+            <!--Button: text on it is a sandwich icon-->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+
+            <!--Collapse navbar-->
+            <!--centralize navbar on large screens-->
+            <div class="collapse navbar-collapse d-lg-flex justify-content-center" id="navbarNavAltMarkup">
+                <div class="navbar-nav w-50 float-end" style="background-color: var(--navbar-color)" ;>
+                    <a class="nav-link text-end" aria-current="page" href="index.html">HOME</a>
+                    <a class="nav-link text-end" href="form.html">FORMS</a>
+                    <a class="nav-link text-end" href="xml-rss.html">XML/RSS</a>
+                    <a class="nav-link text-end" href="js-demo.html">JAVASCRIPT</a>
+                    <a class="nav-link active text-end bg-warning" href="my-research.html">RESEARCH</a>
+                </div>
+            </div>
+
+            <!--Search Button large screen-->
+            <button class="btn d-none d-lg-inline" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseSearchBox">
+                <span class=" fs-2 bi bi-search"></span>
+            </button>
+
+        </div>
+    </nav>
+
+    <main>
+
+        <!--Research Section-->
+        <section style="min-height: 30vh; background-color: var(--competence-color); padding: 20px;">
+            <section class="container">
+                <div class="row">
+                    <!-- Flipbox 1: Copyright, Creative Common (CC) Licenses, Fair Use -->
+                    <div class="col-12 col-lg-4 searchable" style="padding: 10px;">
+                        <div class="flip-box">
+                            <div class="flip-box-inner">
+                                <div class="flip-box-front">
+                                    <h4 id="FlipTitle">Copyright, Creative Common (CC) Licenses, Fair Use</h4>
+                                    <img src="Images/copyright.jpg" id="flipimg"></img>
+                                </div>
+                                <div class="flip-box-back">
+                                    <div class="scroll-box">
+                                        <h5>Copyright, Creative Common (CC) Licenses, Fair Use</h5>
+                                        <p>
+                                        <h6>Copyright, Creative Commons</h4>
+                                            Copyright is an official kind of protection, that is given to the creator of
+                                            an original work – this includes written, performed (acted or musical), and
+                                            many other kinds of “intellectual works”.
+                                            <br><br>
+                                            Copyright laws give the creator of an original work the exclusive rights to
+                                            use, reproduce, or distribute their work.
+                                            <br>
+                                            (Ministry of Business, Innovation and Employment, n.d.)
+                                            <br><br>
+                                            With the introduction of Creative Commons (CC) licenses, creators can now
+                                            specify how others can use their work.
+                                            <br><br>
+                                            There are 4 primary types of CC licenses, listed below:
+                                            </p>
+
+                                            <p>
+                                                <strong>1. Attribution (BY):</strong><br> Others are permitted to remix,
+                                                adapt, build upon or
+                                                distribute the original creators work (including for commercial gains)
+                                                so
+                                                long as the original creator is credited as such.
+                                                <br><br>
+                                                <strong>2. Share Alike(SA):</strong><br> Others can remix, adapt, build
+                                                upon, or distribute
+                                                (NOT
+                                                for commercial gains) so long as they license their new creations under
+                                                identical terms.
+                                                <br><br>
+                                                <strong>3. Non Commercial(NC):</strong><br> Others can remix, adapt,
+                                                build upon, or
+                                                distribute
+                                                (NOT for commercial gains) so long as their works acknowledge the
+                                                original
+                                                creator. The new works do not have to be licensed under identical terms.
+                                                <br><br>
+                                                <strong>4. No Derivatives(ND):</strong><br> Others can reuse the
+                                                original work for any
+                                                purpose,
+                                                but the original work cannot be adapted in any way, and the original
+                                                creator
+                                                must be credited accordingly.
+                                                <br>
+                                                (University of Auckland, n.d.)
+                                            </p>
+
+                                            <p>
+                                            <h6>Fair Use</h6>
+                                            Fair Use is a legally binding doctrine that permits a limited range of uses
+                                            of copyrighted materials. This means that permission does not necessarily
+                                            need to be acquired from the copyrights holders before use.
+                                            <br><br>
+                                            This is particularly useful where education, news, and research is
+                                            concerned.
+                                            <br><br>
+                                            <strong>Factors that play a role in determining fair use
+                                                include:</strong><br>
+                                            1. Purpose of the use<br>
+                                            2. The nature of the copyrighted work<br>
+                                            3. The total portion of the original work used<br>
+                                            4. The effect on the value of the original work.
+                                            <br>
+                                            (Copyright Licensing NZ, 2020)
+                                            <br><br>
+                                            References:
+                                            <br><br>
+                                            Copyright Licensing NZ. (2020, November). Fair dealing in New Zealand [Fact
+                                            sheet]. Your Guide to NZ Copyright.
+                                            <br>
+                                            <a
+                                                href="https://www.copyright.co.nz/downloads/assets/5212/1/fact-sheet:-fair-dealing-in-new-zealand.pd">Link
+                                                to PDF</a>
+                                            <br><br>
+                                            University of Auckland. (n.d.). Creative Commons [Web page].
+                                            <br>
+                                            <a
+                                                href="https://www.auckland.ac.nz/en/staff/education-office/learning-teaching-policies/copyright-at-auckland/research-publication/creative-commons.html">Link
+                                                to Page</a>
+                                            <br><br>
+                                            Ministry of Business, Innovation and Employment. (n.d.). Copyright
+                                            protection in New Zealand [Web page].
+                                            <br>
+                                            <a
+                                                href="https://www.mbie.govt.nz/business-and-employment/business/intellectual-property/copyright/copyright-protection-in-new-zealand">Link
+                                                to Page</a>
+                                            </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Flipbox 2: Privacy & Web Privacy Policy -->
+                    <div class="col-12 col-lg-4 searchable" style="padding: 10px;">
+                        <div class="flip-box">
+                            <div class="flip-box-inner">
+                                <div class="flip-box-front">
+                                    <h4 id="FlipTitle">Privacy & Web Privacy Policy</h4>
+                                    <img src="Images/privacy.jpg" id="flipimg"></img>
+                                </div>
+                                <div class="flip-box-back">
+                                    <div class="scroll-box">
+                                        <h5>Privacy & Privacy Policy</h5>
+                                        <p>
+                                            Privacy is a fundamental human right, ensuring that an individual’s personal
+                                            information is protected from access by unauthorized entities. In the modern
+                                            age of the internet, privacy has become increasingly important as businesses
+                                            and organizations collect vast amounts of information from users across the
+                                            globe. <br><br>
+                                            A website is required to have a Privacy Policy, which is a legal document
+                                            that binds the website's owners to a strict guideline outlining how they
+                                            collect, use, and safeguard any personal information gathered from users.
+                                            Below is an overview of the New Zealand Privacy Act 2020's 13 Privacy
+                                            Principles, which provide a framework for handling personal information.
+                                            <br><br>
+                                            <strong>13 Privacy Principles</strong><br><br>
+                                            <strong>1. Purpose of Collection:</strong><br> Personal information should
+                                            only be collected for
+                                            a lawful and necessary purpose. <br><br>
+                                            <strong>2. Source of Information:</strong><br> Personal information should
+                                            be collected directly
+                                            from the individual unless authorized otherwise. <br><br>
+                                            <strong>3. Collection Notification:</strong><br> The individual must be
+                                            informed about the
+                                            purpose of collecting their information and how it will be used. <br><br>
+                                            <strong>4. Manner of Collection:</strong><br> Personal information must be
+                                            collected lawfully and
+                                            fairly. <br><br>
+                                            <strong>5. Storage and Security:</strong><br> Agencies must ensure personal
+                                            information is stored
+                                            securely and protected from loss, unauthorized access, or misuse. <br><br>
+                                            <strong>6. Access to Information:</strong><br> Individuals have the right to
+                                            access any personal
+                                            information held about them. <br><br>
+                                            <strong>7. Correction of Information:</strong><br> Individuals have the
+                                            right to request
+                                            correction of any inaccurate information. <br><br>
+                                            <strong>8. Accuracy of Information:</strong><br> Agencies must take
+                                            reasonable steps to ensure
+                                            the information they hold is accurate and up-to-date. <br><br>
+                                            <strong>9. Retention of Information:</strong><br> Personal information must
+                                            not be kept longer
+                                            than necessary for the purpose it was collected. <br><br>
+                                            <strong>10. Use of Information:</strong><br> Personal information can only
+                                            be used for the
+                                            purpose it was collected unless an exception applies. <br><br>
+                                            <strong>11. Disclosure of Information:</strong><br> Personal information
+                                            should not be disclosed
+                                            to other entities unless authorized by the individual or required by law.
+                                            <br><br>
+                                            <strong>12. Unique Identifiers:</strong><br> Agencies should avoid assigning
+                                            unique identifiers
+                                            unless necessary to carry out their functions. <br><br>
+                                            <strong>13. Cross-border Disclosure:</strong><br> When disclosing
+                                            information to overseas
+                                            entities, agencies must ensure the recipient protects the information as
+                                            well as the NZ Privacy Act requires. <br>
+
+                                        </p>
+                                        <p>
+                                            Any privacy policy should (at a minimum) clearly state what information is
+                                            being collected from users (such as name, email address, etc).
+                                            <br>
+                                            It should also state how the personal information is being used, and who it
+                                            will be shared with (if at all).
+                                            <br><br>
+                                            The privacy policy must also explain to users how they can control their
+                                            personal data, such as opting out of the collection of their data or posting
+                                            a request to have their personal information deleted.
+                                            <br><br>
+                                            (Digital.govt.nz, n.d.)<br>
+                                            (Privacy Commissioner, n.d.)<br>
+                                            (Consumer, n.d.)
+                                        </p>
+                                        <br><br>
+                                        <a href="privacypolicy.html" class="fs-5">PRIVACY POLICY</a>
+                                        <br><br>
+                                        References:
+                                        <br><br>
+                                        Digital.govt.nz. (n.d.). Privacy [Section of Web usability standard 1.3].
+                                        <br>
+                                        <a
+                                            href="https://www.digital.govt.nz/standards-and-guidance/nz-government-web-standards/web-usability-standard-1-3/#privacy">Link
+                                            to Page</a><br><br>
+                                        Privacy Commissioner. (n.d.). Your privacy rights. [Web page].
+                                        <br>
+                                        <a href="https://www.privacy.org.nz/your-rights/your-privacy-rights/">Link to
+                                            Page</a>
+                                        <br><br>
+                                        Consumer. (n.d.). Privacy law. [Web page, article].
+                                        <br>
+                                        <a href="https://www.consumer.org.nz/articles/privacy-law">Link to Page</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Flipbox 3: Search Engine Optimization (SEO) -->
+                    <div class="col-12 col-lg-4 searchable" style="padding: 10px;">
+                        <div class="flip-box">
+                            <div class="flip-box-inner">
+                                <div class="flip-box-front">
+                                    <h4 id="FlipTitle">How to improve your website SEO?</h4>
+                                    <img src="Images/seo.jpg" id="flipimg"></img>
+                                </div>
+                                <div class="flip-box-back">
+                                    <div class="scroll-box">
+                                        <h5>Search Engine Optimization (SEO)</h5>
+                                        <p>
+                                            Search Engine Optimization (abbreviated to SEO) is the way your website can
+                                            be optimized to improve the visibility of your website in search engine
+                                            results
+                                            (such as google).
+                                            <br><br>
+                                            Effective Search Engine Optimization is directly attributed to increased
+                                            traffic on a website, and therefore increased awareness of a brand or
+                                            service.
+                                            <br><br>
+                                            There are many key strategies to enhance a websites SEO:
+                                        </p>
+                                        <p>
+                                            <strong>1. Key word optimization:</strong> <br>
+                                            Incorporating relevant keywords (directly related to your website’s content)
+                                            in your websites titles, headings, and bodies of text will help users find
+                                            your website.<br><br>
+                                            <strong>2. High Quality Content:</strong><br>
+                                            Content that is informative or valuable to your target audience is more
+                                            likely to be shared (or linked) to other users/websites, which increases
+                                            your websites presence on the internet.<br><br>
+                                            <strong>3. Website Speed:</strong> <br>
+                                            A website that loads quickly will be favoured in a search engines “rank” –
+                                            your page will be prioritized if it is more responsive than competitors.<br>
+                                            Optimizing the size and quality of images and text will directly effect how
+                                            fast your page responds to user interactions.<br><br>
+                                            <strong>4. Mobile Friendliness:</strong> <br>
+                                            Considering the vast amount of users now utilizing mobile technology, it is
+                                            imperative that a website is able to display properly on mobile devices.<br>
+                                            Responsive designs that work on all screen sizes is crucial to the usability
+                                            of a website by all users.<br>
+                                            Google priotizies mobile-friendly sites in its rankings during a
+                                            search.<br><br>
+                                            <strong>5. Backlinks:</strong> <br>
+                                            A website featuring a series of quality links from reputable websites builds
+                                            trustworthiness, and again increases a websites presence on the internet.
+                                            <br><br>
+                                            (Google, n.d.)<br>
+                                            (MichiganTech, n.d.)<br>
+                                            (Business.gov.au)
+                                            <br><br>
+                                            References:
+                                            <br><br>
+                                            Google. (n.d.). SEO starter guide [Web page].
+                                            <br>
+                                            <a
+                                                href="https://developers.google.com/search/docs/fundamentals/seo-starter-guide">Link
+                                                to Page</a><br><br>
+                                            MichiganTech. (n.d.). Five Ways to Improve Your Site's Ranking (SEO). [web
+                                            page, article]. <br>
+                                            <a href="https://www.mtu.edu/umc/services/websites/seo/">Link to
+                                                Page</a><br><br>
+                                            Business.gov.au. (n.d.). Improve your search engine rankings. [web page]
+                                            <br>
+                                            <a
+                                                href="https://business.gov.au/online-and-digital/business-website/improve-your-search-engine-rankings">Link
+                                                to Page</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!-- Flipbox 4: Web Hosting -->
+                    <div class="col-12 col-lg-4 searchable" style="padding: 10px;">
+                        <div class="flip-box">
+                            <div class="flip-box-inner">
+                                <div class="flip-box-front">
+                                    <h4 id="FlipTitle">Choosing the right web hosting provider</h4>
+                                    <img src="Images/web-hosting.jpg" id="flipimg"></img>
+                                </div>
+                                <div class="flip-box-back">
+                                    <div class="scroll-box">
+                                        <h5>Web Hosting</h5>
+                                        <p>
+                                            Choosing the right web hosting provider is paramount to the success of a
+                                            website. <br>
+                                            A hosting provider affects your website's performance, responsiveness,
+                                            reliability, and scalability. <br>
+                                            Below are 5 factors to consider when selecting a web hosting provider:
+                                        </p>
+
+                                        <p>
+                                            <strong>1. Reliability:</strong><br>
+                                            A web hosting provider must guarantee a high uptime (as close to 100% as
+                                            possible) to ensure that a website is always accessible. <br>
+                                            Downtime results in lost revenue, brand awareness, credibility, and above
+                                            all, a poor user experience. <br><br>
+                                            <strong>2. Customer Support:</strong> <br>
+                                            Quality customer support is essential when evaluating the usefulness of a
+                                            web hosting provider. Providers that offer 24/7
+                                            support through multiple channels (chat, email, phone) are preferred. This
+                                            determines how quickly an issue can be resolved,
+                                            minimizing any disruptions. <br><br>
+                                            <strong>3. Scalability:</strong> <br>
+                                            As a website increases in both content size and user base, more resources
+                                            will be needed. A web hosting provider that offers
+                                            scalable plans allows websites to upgrade or downgrade as needed, without
+                                            significant disruption to users. <br><br>
+                                            <strong>4. Security:</strong> <br>
+                                            A web hosting provider must have strong security measures to protect
+                                            websites from hacking, malware, and data breaches.
+                                            Features like SSL certificates, regular backups, and firewall protection
+                                            should be standard to ensure the safety of user
+                                            data and website functionality. <br><br>
+                                            <strong>5. Pricing and Value for Money:</strong> <br>
+                                            It's important to choose a hosting provider that offers a balance between
+                                            cost and features. While cheaper plans might be
+                                            attractive, they often come with limited resources or support. Assessing the
+                                            features offered for the price will help you
+                                            ensure you're getting the best value for your needs.
+                                        </p>
+
+                                        <br><br>
+                                        (Business.com, 2020)<br>
+                                        (MarsDigital, 2024)<br>
+                                        (Bay of Plenty Business News, 2022)
+                                        <br><br>
+                                        References:
+                                        <br><br>
+                                        Business.com. 2020, February 21. 10 tips for choosing the right web
+                                        hosting company [Web article].
+                                        <br>
+                                        <a
+                                            href="www.business.com/articles/10-tips-for-choosing-the-right-web-hosting-company/">Link
+                                            to Page</a><br><br>
+                                        M. Edwards. May 14, 2024. MarsDigital. Understanding Web Hosting: A Guide for
+                                        New Zealand Business Owners and Marketing Managers. [web page, article]<br>
+                                        <a href="https://marsdigital.co.nz/understanding-web-hosting/">Link to
+                                            Page</a><br><br>
+
+                                        M. Tolmay. 20/01/2022. Bay of Plenty Business News. How to choose the best
+                                        website hosting platform for your business. [web page, article]<br>
+                                        <a
+                                            href="https://bopbusinessnews.co.nz/tech-talk/how-to-choose-the-best-website-hosting-platform-for-your-business/">Link
+                                            to page.</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Flipbox 5: Web Performance & Maintenance -->
+                    <div class="col-12 col-lg-4 searchable" style="padding: 10px;">
+                        <div class="flip-box">
+                            <div class="flip-box-inner">
+                                <div class="flip-box-front">
+                                    <h4 id="FlipTitle">Web Performance and Maintenance</h4>
+                                    <img src="Images/web-performance.jpg" id="flipimg"></img>
+                                </div>
+                                <div class="flip-box-back">
+                                    <div class="scroll-box">
+                                        <h5>Web Performance & Maintenance</h5>
+                                        <p>
+                                            Web performance is about how fast a website loads and runs on any given
+                                            user’s device.<br>
+                                            Good performance is important to retain visitors and ensure a positive
+                                            experience for users. <br>
+                                            Regular maintenance of a website ensures that it remains functional, secure,
+                                            and up-to-date. <br>
+                                            Below are some methods to ensure good web performance:
+                                        </p>
+
+                                        <p>
+                                            <strong>1. Optimized Images:</strong> <br>
+                                            Large images can slow down website loading times. Use compression techniques
+                                            to reduce file size without compromising quality, and choose appropriate
+                                            formats such as JPEG or PNG.<br><br>
+                                            <strong>2. Minify CSS and JavaScript:</strong> <br>
+                                            Minification removes unnecessary characters (such as spaces, comments) from
+                                            CSS and JavaScript files, reducing file sizes and speeding up page load
+                                            times.<br><br>
+                                            <strong>3. Enable Browser Caching:</strong> <br>
+                                            Browser caching stores elements of a website on a user’s device, allowing
+                                            the site to load faster when revisited by retrieving stored data instead of
+                                            reloading all content.<br><br>
+                                            <strong>4. Use a Content Delivery Network (CDN):</strong> <br>
+                                            A CDN stores website files across multiple servers around the globe,
+                                            allowing users to access content from the server closest to them, reducing
+                                            latency and loading times.<br><br>
+                                            <strong>5. Reduce HTTP Requests:</strong> <br>
+                                            Minimizing the number of HTTP requests by combining CSS and JavaScript
+                                            files, as well as limiting the number of images, can significantly reduce
+                                            load times.<br><br>
+                                            (Shopify, n.d.)<br>
+                                        </p>
+
+                                        <p>
+                                            In addition to performance improvements, regular maintenance is crucial to
+                                            keep the website functional and secure. Below are 5 important maintenance
+                                            tasks:
+                                        </p>
+
+                                        <p>
+                                            <strong>1. Backup Regularly:</strong> <br>
+                                            A regular backup of all website data will ensure that a website can be
+                                            restored to a previous state, in the case where data loss or an attack takes
+                                            place.<br><br>
+                                            <strong>2. Update Software and Plugins:</strong> <br>
+                                            By keeping a websites content management system and plugins
+                                            up-to-date ensures security patches and performance improvements are applied
+                                            regularly.<br><br>
+                                            <strong>3. Monitor for Broken Links:</strong> <br>
+                                            A regular check for and (and fix of) broken links will improve overall user
+                                            experience and
+                                            search engine optimization (SEO). Broken links can frustrate users and
+                                            negatively impact search rankings.<br><br>
+                                            <strong>4. Check Website Speed:</strong> <br>
+                                            A periodic test of a websites loading speed (using tools like Google
+                                            PageSpeed Insights) ensures that performance stays optimal, particularly as
+                                            content
+                                            grows.<br><br>
+                                            <strong>5. Security Audits:</strong> <br>
+                                            By performing regular security checks (including scanning for malware and
+                                            vulnerabilities) ensures that a website remains secure and protected from
+                                            potential attacks.<br><br>
+
+                                            (Radical Web Design, n.d.)<br>
+                                            (ValueCoders)<br><br>
+
+                                            References:<br><br>
+                                            Shopify. (n.d.). 9 Essential Strategies for Web Performance Optimization.
+                                            Shopify.<br> <a
+                                                href="https://www.shopify.com/nz/enterprise/blog/web-performance-optimization">Link
+                                                to Page</a><br><br>
+                                            Radical Web Design. (n.d.). The importance of website maintenance + 12
+                                            essential tasks. Radical
+                                            Web Design.<br> <a
+                                                href="https://radicalwebdesign.co.uk/blog/importance-of-website-maintenance/"">Link
+                                                to Page</a><br><br>
+                                            S. Martin. (n.d.). Value Coders. The Ultimate Website Maintenance Checklist. [Web page, article]<br>
+                                            <a href="
+                                                https://www.valuecoders.com/blog/solutions/the-ultimate-website-maintenance-checklist/">Link
+                                                to Page</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Flipbox 6: Web Security -->
+                    <div class=" col-12 col-lg-4 searchable" style="padding: 10px;">
+                        <div class="flip-box">
+                            <div class="flip-box-inner">
+                                <div class="flip-box-front">
+                                    <h4 id="FlipTitle">Web Security</h4>
+                                    <img src="Images/web-security.jpg" id="flipimg" alt="Web Security">
+                                </div>
+                                <div class="flip-box-back">
+                                    <div class="scroll-box">
+                                        <h5>Web Security</h5>
+                                        <p>
+                                            Web security is one of the most important aspects
+                                            where maintaining a safe
+                                            and trustworthy website is concerned.<br>
+                                            Websites are often the target of various
+                                            “cyber-attacks” – each with its own
+                                            unique methods of attack and degrees of impact on
+                                            both users and
+                                            data.<br><br>
+                                            Below are some of the more common kinds of
+                                            cyber-attacks, and how to go
+                                            about preventing them:
+                                        </p>
+                                        <p>
+                                            <strong>1. Phishing Attacks:</strong><br>
+                                            Phishing attacks occur when a user is fooled into
+                                            providing sensitive
+                                            information (e.g. password or credit card details)
+                                            to an untrustworthy
+                                            entity. This attack is performed by a website (or
+                                            email agent) that pretends
+                                            to represent a verified company/entity.<br><br>
+                                            To prevent Phishing attacks, a user can implement a
+                                            robust approach to email
+                                            filtering, employing a system to block “suspicious
+                                            messages”, and also to
+                                            conduct/attend user education programmes to help
+                                            users raise awareness about
+                                            (and recognize) an attempted phishing
+                                            attack.<br><br>
+                                            <strong>2. SQL Injection: </strong><br>
+                                            SQL Injection is a form of cyber-attack where
+                                            malicious SQL code is ran as a
+                                            query, to manipulated a targeted database and gain
+                                            (usually) unauthorized
+                                            access to sensitive data.<br><br>
+                                            To prevent SQL Injection attacks, the use of strong
+                                            input validation will
+                                            ensure that only valid data is accepted and
+                                            processed.<br><br>
+                                            <strong>3. Cross-Site Scripting (XSS):</strong> <br>
+                                            XSS Attacks involve the injection of a malicious
+                                            script(s) into a target
+                                            webpage. The aim is usually to either steal data or
+                                            deface the website. This
+                                            is a similar attack to a SQL Injection attack.
+                                            <br><br>
+                                            To prevent XSS attacks, the adoption of secure
+                                            coding practices is paramount
+                                            to preventing the injection of malicious code. This
+                                            can be done by:<br><br>
+                                            - Sanitizing user inputs
+                                            - Escaping special characters
+                                            - Using content security policies (CSP) to block
+                                            malicious scripts. <br><br>
+                                            <strong>4. Distributed Denial of Service (DDOS):</strong> <br>
+                                            DDOS attacks flood a server with an overwhelming
+                                            volume of traffic, which
+                                            renders a website or service inoperable and
+                                            therefore unavailable to other
+                                            users. <br><br>
+                                            To prevent DDOS attacks, the implementation of a
+                                            traffic monitoring system
+                                            designed to detect unusual spikes and deploy a CDN
+                                            (content delivery
+                                            network) will distribute traffic across multiple
+                                            servers. This will absorb
+                                            any sudden traffic surges, rendering a DDOS
+                                            ineffective.<br><br>
+                                            <strong>5. Malware: </strong><br>
+                                            Malware often refers to a kind of malicious software
+                                            (often called a
+                                            “virus”) that can and will harm or exploit systems,
+                                            users, sensitive data,
+                                            and aid in the gaining of unauthorized access to
+                                            networks or private
+                                            information.<br><br>
+                                            Malware attacks can be prevented by using reliable
+                                            security software(s).<br>
+                                            This software will detect and remove malware, keep
+                                            malware-detection
+                                            systems, applications and libraries updated to patch
+                                            over vulnerabilities,
+                                            and regularly monitor networks for “suspicious”
+                                            activities and/or unusual
+                                            behaviour from programs/services. <br><br>
+                                            (Cobb, 2024)<br>
+                                            (Mailchimp. n.d.)<br>
+                                            (Sitelock, 2024.)<br><br>
+                                            References:<br><br>
+                                            Cobb, M. (2024, July 5). 16 common types of
+                                            cyberattacks and how to prevent
+                                            them. TechTarget.<br>
+                                            <a
+                                                href="https://www.techtarget.com/searchsecurity/tip/6-common-types-of-cyber-attacks-and-how-to-prevent-them">Link
+                                                to Page</a><br><br>
+                                            Mailchimp. N.d. Website Security 101: How to Secure Your Website. [web page,
+                                            article]<br>
+                                            <a href="https://mailchimp.com/resources/website-security/">Link to
+                                                page</a><br><br>
+                                            Sitelock. 25/04/2024. Website Security Definition & How to Keep Your Site
+                                            Protected. [web page, article]<br>
+                                            <a href="https://www.sitelock.com/blog/what-is-website-security/">Link to
+                                                Page</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+
+        <!-- Footer area -->
+        <footer style="background-color: var(--navbar-color);">
+            <div class="container">
+                <!-- Footer content -->
+                <div class="row text-center text-md-start">
+                    <!-- Social media div -->
+                    <div class="col-12 col-md-4 mb-3 mb-md-0 d-flex justify-content-center justify-content-md-start">
+                        <a href="https://www.facebook.com" class="mx-2"><span class="fs-1 bi bi-facebook"
+                                style="color:blue;"></span></a>
+                        <a href="https://www.twitter.com" class="mx-2"><span class="fs-1 bi bi-twitter"
+                                style="color:lightblue;"></span></a>
+                        <a href="https://www.youtube.com" class="mx-2"><span class="fs-1 bi bi-youtube"
+                                style="color:red;"></span></a>
+                        <a href="https://www.instagram.com" class="mx-2"><span class="fs-1 bi bi-instagram"
+                                style="color:pink;"></span></a>
+                        <a href="https://www.linkedin.com" class="mx-2"><span class="fs-1 bi bi-linkedin"
+                                style="color:white;"></span></a>
+                    </div>
+
+                    <!-- Copyright div -->
+                    <div class="col-6 col-md-4 mb-3 mb-md-0 d-flex justify-content-center align-items-center">
+                        <p class="fs-5 mb-0"><span class="bi bi-c-circle"></span> 2024 Rhys Bates</p>
+                    </div>
+
+                    <!-- Privacy policy div -->
+                    <div
+                        class="col-6 col-md-4 mb-3 mb-md-0 d-flex justify-content-center justify-content-md-end align-items-center">
+                        <a href="privacypolicy.html" class="fs-5">PRIVACY POLICY</a>
+                    </div>
+                </div>
+        </footer>
+
+
+        <!--Insert Bootstrap Javascript and JQuery-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"></script>
+</body>
+
+</html>

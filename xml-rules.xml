@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/css" href="data-style.css" ?>
+
+<xml-rules>
+    <title>XML Syntax Rules</title>
+    <description>6 rules that must be adhered to in order to create a valid XML file:</description>
+
+    <rule1-2>
+
+        <rule>
+            <heading>Rule 1: XML Documents Must Have a Root Element.</heading>
+            <gap1></gap1>
+            <description>Description: XML documents must contain one root element that is the parent of all other elements.</description>
+            <gap2></gap2>
+            <example>Code Sample:
+                &lt;root&gt;
+                &lt;child&gt;
+                    &lt;subchild&gt;.....&lt;/subchild&gt;
+                &lt;/child&gt;
+                &lt;/root&gt;
+            </example>
+        </rule>
+
+        <rule>
+            <heading>Rule 2: The XML prolog.</heading>
+            <gap1></gap1>
+            <description>Description: The XML prolog is optional. If it exists, it must come first in the document.</description>
+            <gap2></gap2>
+            <example>Code Sample:
+                &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+            </example>
+        </rule>
+
+    </rule1-2>
+
+    <rule3-4>
+
+        <rule>
+            <heading>Rule 3: All XML Elements Must Have a Closing Tag.</heading>
+            <gap1></gap1>
+            <description>Description: In XML, it is illegal to omit the closing tag. All elements must have a closing tag.</description>
+            <gap2></gap2>
+            <example>Code Sample:
+                &lt;p&gt;This is a paragraph.&lt;/p&gt;
+                &lt;br /&gt;
+            </example>
+        </rule>
+
+        <rule>
+            <heading>Rule 4: XML Tags are Case Sensitive.</heading>
+            <gap1></gap1>
+            <description>Description: Opening and closing tags must be written with the same case.</description>
+            <gap2></gap2>
+            <example>Code Sample:
+                &lt;message&gt;This is correct&lt;/message&gt;
+            </example>
+        </rule>
+
+    </rule3-4>
+
+    <rule5-6>
+
+        <rule>
+            <heading>Rule 5: XML Elements Must be Properly Nested.</heading>
+            <gap1></gap1>
+            <description>Description: In HTML, you might see improperly nested elements. In XML, all elements must be properly nested within each other.</description>
+            <gap2></gap2>
+            <example>Code Sample:
+                &lt;b&gt;&lt;i&gt;This text is bold and italic&lt;/i&gt;&lt;/b&gt;
+            </example>
+        </rule>
+
+        <rule>
+            <heading>Rule 6: XML Attribute Values Must Always be Quoted</heading>
+            <gap1></gap1>
+            <description>Description: XML elements can have attributes in name/value pairs just like in HTML. In XML, the attribute values must always be quoted.</description>
+            <gap2></gap2>
+            <example>Code Sample:
+                &lt;note date=&quot;12/11/2007&quot;&gt;
+                    &lt;to&gt;Tove&lt;/to&gt;
+                    &lt;from&gt;Jani&lt;/from&gt;
+                &lt;/note&gt;
+            </example>
+        </rule>
+
+    </rule5-6>
+
+</xml-rules>

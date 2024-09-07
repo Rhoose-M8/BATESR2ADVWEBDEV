@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Page Title-->
+    <title>JS - Demos - ITWD6.408 - BATESR2</title>
+    <!--Page Icon-->
+    <link rel="icon" href="Images/pageicon.png" type="image/x-icon">
+
+    <!--Insert Bootstrap CSS here-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!--Insert Bootstrap Icons CSS-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!--Insert Bootstrap Javascript and JQuery-->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <style>
+        :root {
+            --navbar-color: #DAF7A6;
+
+
+        }
+
+
+        /* Base button styles */
+        .btn-custom {
+            color: blue;
+            /* Blue text color for both buttons */
+            background-color: white;
+            /* White background for inactive buttons */
+            border: 1px solid black;
+            /* 1px black border */
+            border-radius: 0;
+            /* Square corners */
+        }
+
+        /* Active button styles */
+        .btn-custom.active {
+            background-color: #FFC107;
+            /* Warning color background for the active button */
+            color: blue;
+            /* Text color for active button */
+        }
+
+        /* Hover effect */
+        .btn-custom:hover {
+            color: blue;
+            /* Text color on hover */
+            border: 1px solid black;
+            /* Border color on hover */
+            opacity: 1;
+            /* Ensure button is fully opaque on hover */
+            transition: none;
+            /* Remove Bootstrap's transition effect */
+        }
+
+        .rss-bg {
+            background-color: lightgray
+        }
+
+        #comments-list li {
+            margin-bottom: 10px;
+            border: 1px black solid;
+            border-radius: 5px;
+            padding-left: 10px;
+            margin-left: 0;
+        }
+
+        /* Large devices (>= 992px) */
+        @media (min-width: 992px) {
+            .btn-custom {
+                margin: 3px;
+                /* Margin of 3px around buttons on large devices */
+            }
+        }
+
+        /*This pushes the drop down section of the navbar to the "top" of the screen so it is visible*/
+        #navbarNavAltMarkup {
+            z-index: 2;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!--search area/search box/search button-->
+    <div class="collapse" id="collapseSearchBox" style="background-color: grey; padding: 10px;">
+        <div class="d-flex justify-content-center">
+            <input id="searchinput" type="text" style="width: 50vw;">
+        </div>
+    </div>
+
+    <!--THIS IS WORKING-->
+    <script>
+        $(document).ready(function () {
+            $('#searchinput').on('keyup', function () {
+                // Get the search keyword and convert it to lowercase
+                let keywords = $(this).val().toLowerCase();
+
+                // Search through Demo1 content divs
+                $('#Demo1Div > div').filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(keywords) > -1);
+                });
+
+                // Search through Demo2 content divs
+                $('#Demo2Div > div').filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(keywords) > -1);
+                });
+
+                // Search through Demo3 content divs
+                $('#Demo3Div > div').filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(keywords) > -1);
+                });
+
+                // Search through Demo4 content divs
+                $('#Demo4Div > div').filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(keywords) > -1);
+                });
+            });
+        });
+    </script>
+
+
+    <!--Navbar area-->
+    <!--Website: getboostrap.com -> components -> Navbar: https://getbootstrap.com/docs/5.3/components/navbar/ -->
+    <nav class="navbar navbar-expand-lg" style="height: 10vh; background-color: var(--navbar-color);">
+        <div class="container-fluid">
+
+            <!--Tagline-->
+            <a class="navbar-brand" href="index.html"><span class="bi bi-globe"></span>ITWD6.408</a>
+
+            <!--Search Button small screen-->
+            <button class="btn d-inline d-lg-none" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseSearchBox">
+                <span class=" fs-2 bi bi-search"></span>
+            </button>
+
+            <!--Button: text on it is a sandwich icon-->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+
+            <!--Collapse navbar-->
+            <!--centralize navbar on large screens-->
+            <div class="collapse navbar-collapse d-lg-flex justify-content-center" id="navbarNavAltMarkup">
+                <div class="navbar-nav w-50 float-end" style="background-color: var(--navbar-color)" ;>
+                    <a class="nav-link text-end" aria-current="page" href="index.html">HOME</a>
+                    <a class="nav-link text-end" href="form.html">FORMS</a>
+                    <a class="nav-link text-end" href="xml-rss.html">XML/RSS</a>
+                    <a class="nav-link active text-end bg-warning" href="js-demo.html">JAVASCRIPT</a>
+                    <a class="nav-link text-end" href="my-research.html">RESEARCH</a>
+                </div>
+            </div>
+
+            <!--Search Button large screen-->
+            <button class="btn d-none d-lg-inline" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseSearchBox">
+                <span class=" fs-2 bi bi-search"></span>
+            </button>
+
+        </div>
+    </nav>
+
+    <main class="row container-fluid" style="min-height: 85vh;">
+
+        <div class="col-12 col-md-3">
+            <div class="row justify-content-center justify-content-md-start mx-0 mx-sm-auto ms-md-2">
+
+
+                <button id="Demo1Button" class="col-6 col-md-12 btn btn-custom active" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#Demo1Div" aria-expanded="false"
+                    aria-controls="collapseExample">
+                    DEMO 1
+                </button>
+
+
+                <button id="Demo2Button" class="col-6 col-md-12 btn btn-custom" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#Demo2Div" aria-expanded="false" aria-controls="collapseExample">
+                    DEMO 2
+                </button>
+
+
+                <button id="Demo3Button" class="col-6 col-md-12 btn btn-custom active" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#Demo3Div" aria-expanded="false"
+                    aria-controls="collapseExample">
+                    DEMO 3
+                </button>
+
+
+                <button id="Demo4Button" class="col-6 col-md-12 btn btn-custom" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#Demo4Div" aria-expanded="false" aria-controls="collapseExample">
+                    DEMO 4
+                </button>
+
+
+            </div>
+        </div>
+
+
+        <!-- DEMO 1 SECTION -->
+        <div class="collapse show col-12 col-md-9" id="Demo1Div" style="padding: 20px;">
+            <h1>Demo 1: Add a comment to a product.</h1>
+            <div id="product" style="background-color: lightblue; padding: 20px;">
+                <h2>Gears of War 2</h2>
+                <img src="Images/gow2.jpg" alt="Product Image" style="max-height: 40vh; height: auto; width: auto;">
+                <p>Gears of War 2 is the eagerly anticipated sequel to the 4.5 million selling blockbuster third-person
+                    tactical action game that became one of the most popular Xbox 360 games in history. </br> This time,
+                    Marcus Fenix and Delta Squad are poised to deliver a bigger, badder, and more intense experience.
+                </p>
+            </div>
+
+            <div id="comments-section" style="margin: 20px;">
+                <h3>Comments</h3>
+                <ul id="comments-list" style="list-style-type: none;"></ul>
+            </div>
+
+            <div id="add-comment" style="margin: 20px;">
+                <h3>Add Your Comment:</h3>
+                <p>Name:</p>
+                <input type="text" id="name" placeholder="Your Name" style="width: 100%;">
+                <p>Comment:</p>
+                <textarea id="comment" placeholder="Add your comment" style="width: 100%;"></textarea>
+                <button onclick="postComment()">Post</button>
+            </div>
+
+            <script>
+                let allComments = [
+                    { name: "Ian", comment: "Recommended, good one" },
+                    { name: "Aman", comment: "I don't like the color" },
+                    { name: "John", comment: "Love it" }
+                ];
+
+                // Function to display comments
+                function displayComments() {
+                    const commentsList = document.getElementById('comments-list');
+                    commentsList.innerHTML = ''; // Clear existing comments
+                    allComments.forEach(comment => {
+                        const li = document.createElement('li');
+                        li.style.marginBottom = '10px'; // Add space between comments
+                        li.innerHTML = `<strong>${comment.name}:</strong><br>${comment.comment}`;
+                        commentsList.appendChild(li);
+                    });
+                }
+
+                // Function to post a new comment
+                function postComment() {
+                    const name = document.getElementById('name').value;
+                    const comment = document.getElementById('comment').value;
+
+                    if (name && comment) {
+                        // Append "(Me)" after the name
+                        allComments.push({ name: `${name} (Me)`, comment: comment });
+
+                        // Clear the input fields
+                        document.getElementById('name').value = '';
+                        document.getElementById('comment').value = '';
+
+                        // Update the displayed comments
+                        displayComments();
+                    }
+                }
+
+                displayComments(); // Initial display of comments
+            </script>
+        </div>
+
+        <!-- DEMO 2 SECTION -->
+        <div class="collapse col-12 col-md-9" id="Demo2Div" style="padding: 20px;">
+            <h1>Demo 2: Like OR Dislike a product.</h1>
+            <div style="padding: 20px;">
+                <h2>Borderlands Game of the Year Edition</h2>
+                <p>
+                    Take on the lawless desolate planet Pandora in pursuit of powerful alien technology: The Vault.
+                    </br> With new weapons, visual upgrades, all 4 add-on packs and more, enjoy the highly acclaimed
+                    FPS/RPG solo or in 4-player split screen co-op!
+                </p>
+                <img src="Images/bdl.jpg" id="productimage" style="max-height: 40vh; height: auto; width: auto;">
+            </div>
+            <div id="vote-section" style="padding: 20px;">
+                <p>Rate this product:</p>
+                <button id="like-button" onclick="vote('like')">👍</button>
+                <span id="like-count">20</span>
+                <button id="dislike-button" onclick="vote('dislike')">👎</button>
+                <span id="dislike-count">5</span>
+            </div>
+
+            <script>
+                let currentVotes = { like: 20, dislike: 5 };
+                let userVote = null; // Track user vote status: null, 'like', 'dislike'
+
+                function vote(voteType) {
+                    if (userVote === voteType) {
+                        // If user clicks the same button, it should deselect the vote
+                        if (voteType === 'like') {
+                            currentVotes.like--;
+                            document.getElementById('like-button').style.backgroundColor = ''; // Reset like button color
+                        } else if (voteType === 'dislike') {
+                            currentVotes.dislike--;
+                            document.getElementById('dislike-button').style.backgroundColor = ''; // Reset dislike button color
+                        }
+                        userVote = null; // Reset user vote status
+                    } else {
+                        // If user clicks a different button, it should switch the vote
+                        if (voteType === 'like') {
+                            if (userVote === 'dislike') {
+                                currentVotes.dislike--;
+                                document.getElementById('dislike-button').style.backgroundColor = ''; // Reset dislike button color
+                            }
+                            currentVotes.like++;
+                            document.getElementById('like-button').style.backgroundColor = 'green'; // Set like button to green
+                        } else if (voteType === 'dislike') {
+                            if (userVote === 'like') {
+                                currentVotes.like--;
+                                document.getElementById('like-button').style.backgroundColor = ''; // Reset like button color
+                            }
+                            currentVotes.dislike++;
+                            document.getElementById('dislike-button').style.backgroundColor = 'red'; // Set dislike button to red
+                        }
+                        userVote = voteType; // Update user vote status
+                    }
+
+                    updateVotes();
+                }
+
+                function updateVotes() {
+                    document.getElementById('like-count').textContent = currentVotes.like;
+                    document.getElementById('dislike-count').textContent = currentVotes.dislike;
+                }
+            </script>
+        </div>
+
+        <!-- DEMO 3 SECTION -->
+        <div class="collapse col-12 col-md-9" id="Demo3Div" style="padding: 20px;">
+            <h1>Demo 3: Change text size, background colour, and image.</h1>
+
+            <div id="content" style="padding: 20px;">
+                <p>In Halo, players control Master Chief, a super soldier who is trying to uncover the mystery of a
+                    strange object, the Halo. The majority of enemies a player encounters are a part of the Covenant, an
+                    alien race bent on destruction.</p>
+
+                <span id="extra-content" style="display: none;">
+                    <p>
+                        In the year 2525, human worlds came under attack by a theocratic alliance of alien races known
+                        as the Covenant, whose leadership declared humanity heretics and an affront to their gods:
+                        the Forerunners. The Covenant began a genocidal holy war.
+                    </p>
+                </span>
+                <button id="toggle-button" onclick="toggleContent()">See More</button>
+            </div>
+            <div style="padding: 20px;">
+                <img id="content-image" src="Images/h1.jpg" alt="Content Image"
+                    style="max-height: 40vh; height: auto; width: auto;">
+            </div>
+
+            <div style="padding-left: 20px; padding-top: 10px;">
+                <label for="bg-color">Background Color:</label>
+                <select id="bg-color" onchange="changeBackgroundColor()">
+                    <option value="white">White</option>
+                    <option value="lightblue">Light Blue</option>
+                    <option value="lightgreen">Light Green</option>
+                </select>
+            </div>
+
+            <div style="padding-left: 20px; padding-top: 10px;">
+                <label for="text-size">Text Size:</label>
+                <select id="text-size" onchange="changeTextSize()">
+                    <option value="16px">Small</option>
+                    <option value="20px">Medium</option>
+                    <option value="24px">Large</option>
+                </select>
+            </div>
+
+            <div style="padding-left: 20px; padding-top: 10px;">
+                <label for="image">Image:</label>
+                <select id="image" onchange="changeImage()">
+                    <option value="images/h1.jpg">Halo: Combat Evolved</option>
+                    <option value="images/h2.jpg">Halo 2</option>
+                    <option value="images/h3.jpg">Halo 3</option>
+                </select>
+            </div>
+        </div>
+
+        <script>
+            function toggleContent() {
+                const extraContent = document.getElementById('extra-content');
+                const toggleButton = document.getElementById('toggle-button');
+
+                if (extraContent.style.display === 'none') {
+                    extraContent.style.display = 'block';
+                    toggleButton.textContent = 'See Less';
+                } else {
+                    extraContent.style.display = 'none';
+                    toggleButton.textContent = 'See More';
+                }
+            }
+
+            function changeBackgroundColor() {
+                const bgColor = document.getElementById('bg-color').value;
+                const demo3Div = document.getElementById('Demo3Div');
+                demo3Div.style.backgroundColor = bgColor;
+            }
+
+            function changeTextSize() {
+                const textSize = document.getElementById('text-size').value;
+                const paragraphs = document.querySelectorAll('#content p, #extra-content p');
+
+                paragraphs.forEach(paragraph => {
+                    paragraph.style.fontSize = textSize;
+                });
+            }
+
+            function changeImage() {
+                const image = document.getElementById('image').value;
+                document.getElementById('content-image').src = image;
+            }
+        </script>
+
+        <!--DEMO 4 SECTION-->
+        <div class="collapse col-12 col-md-9" id="Demo4Div" style="padding: 20px;">
+            <h1>Demo 4: My To-Do List.</h1>
+            <div id="todo-list" style="padding-top: 20px;">
+                <input type="text" id="new-task" placeholder="Add a new task" style="width: 90%">
+                <button onclick="addTask()">Add Task</button>
+
+                <ul id="tasks" style="padding-top: 20px; list-style-type: none;">
+                    <!-- Tasks will be appended here -->
+                </ul>
+
+                <h4>Note:</h4>
+                <p>I have added a status selector to each list item to enrich this demo.</p>
+                <p>This was not required by the assignment brief, however the demo felt very basic initially.</p>
+            </div>
+
+            <script>
+                let tasks = [];
+                let colorLabels = {
+                    green: 'Done',
+                    yellow: 'In Progress',
+                    red: 'To Do',
+                    blue: 'Paused Task'
+                };
+
+                function addTask() {
+                    const newTask = document.getElementById('new-task').value;
+                    if (newTask) {
+                        tasks.push({ text: newTask, color: '' });
+                        document.getElementById('new-task').value = '';
+                        displayTasks();
+                    }
+                }
+
+                function editTask(index) {
+                    const updatedTask = prompt("Edit your task:", tasks[index].text);
+                    if (updatedTask) {
+                        tasks[index].text = updatedTask;
+                        displayTasks();
+                    }
+                }
+
+                function removeTask(index) {
+                    tasks.splice(index, 1);
+                    displayTasks();
+                }
+
+                function changeColor(index, color) {
+                    tasks[index].color = color;
+                    displayTasks();
+                }
+
+                function displayTasks() {
+                    const tasksList = document.getElementById('tasks');
+                    tasksList.innerHTML = ''; // Clear previous list
+                    tasks.forEach((task, index) => {
+                        const li = document.createElement('li');
+                        const color = task.color;
+
+                        // Set background color, text color, and margin for spacing
+                        li.style.backgroundColor = color;
+                        li.style.color = ['red', 'blue'].includes(color) ? 'white' : 'black';
+                        li.style.marginTop = '10px';
+                        li.style.padding = '20px';
+                        li.style.minHeight = '50px';
+
+                        // Task text in a separate div
+                        const taskTextDiv = `<div>${task.text}</div>`;
+
+                        // Dropdown menu for color selection with label and buttons in a separate div
+                        const controlsDiv = `
+                            <div style="margin-top: 10px;">
+                                <label>Status: </label>
+                                <select onchange="changeColor(${index}, this.value)">
+                                    <option value="" ${color === '' ? 'selected' : ''}></option> <!-- Blank option -->
+                                    <option value="green" ${color === 'green' ? 'selected' : ''}>Done</option>
+                                    <option value="yellow" ${color === 'yellow' ? 'selected' : ''}>In Progress</option>
+                                    <option value="red" ${color === 'red' ? 'selected' : ''}>To Do</option>
+                                    <option value="blue" ${color === 'blue' ? 'selected' : ''}>Paused Task</option>
+                                </select>
+                                <button onclick="editTask(${index})">Edit</button> 
+                                <button onclick="removeTask(${index})">Remove</button>
+                            </div>
+                        `;
+
+                        li.innerHTML = `
+            ${taskTextDiv}
+            ${controlsDiv}
+        `;
+                        tasksList.appendChild(li);
+                    });
+                }
+            </script>
+        </div>
+
+        </div>
+
+    </main>
+
+    <!-- Footer area -->
+    <footer style="background-color: var(--navbar-color);">
+        <div class="container">
+            <!-- Footer content -->
+            <div class="row text-center text-md-start">
+                <!-- Social media div -->
+                <div class="col-12 col-md-4 mb-3 mb-md-0 d-flex justify-content-center justify-content-md-start">
+                    <a href="https://www.facebook.com" class="mx-2"><span class="fs-1 bi bi-facebook"
+                            style="color:blue;"></span></a>
+                    <a href="https://www.twitter.com" class="mx-2"><span class="fs-1 bi bi-twitter"
+                            style="color:lightblue;"></span></a>
+                    <a href="https://www.youtube.com" class="mx-2"><span class="fs-1 bi bi-youtube"
+                            style="color:red;"></span></a>
+                    <a href="https://www.instagram.com" class="mx-2"><span class="fs-1 bi bi-instagram"
+                            style="color:pink;"></span></a>
+                    <a href="https://www.linkedin.com" class="mx-2"><span class="fs-1 bi bi-linkedin"
+                            style="color:white;"></span></a>
+                </div>
+
+                <!-- Copyright div -->
+                <div class="col-6 col-md-4 mb-3 mb-md-0 d-flex justify-content-center align-items-center">
+                    <p class="fs-5 mb-0"><span class="bi bi-c-circle"></span> 2024 Rhys Bates</p>
+                </div>
+
+                <!-- Privacy policy div -->
+                <div
+                    class="col-6 col-md-4 mb-3 mb-md-0 d-flex justify-content-center justify-content-md-end align-items-center">
+                    <a href="privacypolicy.html" class="fs-5">PRIVACY POLICY</a>
+                </div>
+            </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const Demo1Button = document.getElementById('Demo1Button');
+            const Demo2Button = document.getElementById('Demo2Button');
+            const Demo3Button = document.getElementById('Demo3Button');
+            const Demo4Button = document.getElementById('Demo4Button');
+            const Demo1Div = document.getElementById('Demo1Div');
+            const Demo2Div = document.getElementById('Demo2Div');
+            const Demo3Div = document.getElementById('Demo3Div');
+            const Demo4Div = document.getElementById('Demo4Div');
+
+            function setActiveButton(activeButton) {
+                Demo1Button.classList.remove('active');
+                Demo2Button.classList.remove('active');
+                Demo3Button.classList.remove('active');
+                Demo4Button.classList.remove('active');
+                activeButton.classList.add('active');
+            }
+
+            function showDiv(divToShow) {
+                Demo1Div.classList.remove('show');
+                Demo2Div.classList.remove('show');
+                Demo3Div.classList.remove('show');
+                Demo4Div.classList.remove('show');
+                divToShow.classList.add('show');
+            }
+
+            // Set the default active button and show the corresponding div
+            showDiv(Demo1Div);
+            setActiveButton(Demo1Button);
+
+            Demo1Button.addEventListener('click', function () {
+                showDiv(Demo1Div);
+                setActiveButton(Demo1Button);
+            });
+
+            Demo2Button.addEventListener('click', function () {
+                showDiv(Demo2Div);
+                setActiveButton(Demo2Button);
+            });
+
+            Demo3Button.addEventListener('click', function () {
+                showDiv(Demo3Div);
+                setActiveButton(Demo3Button);
+            });
+
+            Demo4Button.addEventListener('click', function () {
+                showDiv(Demo4Div);
+                setActiveButton(Demo4Button);
+            });
+        });
+    </script>
+
+    <!--Insert Bootstrap Javascript and JQuery-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

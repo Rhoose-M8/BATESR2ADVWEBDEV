@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Page Title-->
+    <title>Form - ITWD6.408 - BATESR2</title>
+    <!--Page Icon-->
+    <link rel="icon" href="Images/pageicon.png" type="image/x-icon">
+
+    <!--Insert Bootstrap CSS here-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!--Insert Bootstrap Icons CSS-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!--Insert Bootstrap Javascript and JQuery-->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+    <style>
+        :root {
+            --navbar-color: #DAF7A6;
+
+        }
+
+
+        /* Base button styles */
+        .btn-custom {
+            color: blue;
+            /* Blue text color for both buttons */
+            background-color: white;
+            /* White background for inactive buttons */
+            border: 1px solid black;
+            /* 1px black border */
+            border-radius: 0;
+            /* Square corners */
+        }
+
+        /* Active button styles */
+        .btn-custom.active {
+            background-color: #FFC107;
+            /* Warning color background for the active button */
+            color: blue;
+            /* Text color for active button */
+        }
+
+        /* Hover effect */
+        .btn-custom:hover {
+            color: blue;
+            /* Text color on hover */
+            border: 1px solid black;
+            /* Border color on hover */
+            opacity: 1;
+            /* Ensure button is fully opaque on hover */
+            transition: none;
+            /* Remove Bootstrap's transition effect */
+        }
+
+        /*This pushes the drop down section of the navbar to the "top" of the screen so it is visible*/
+        #navbarNavAltMarkup {
+            z-index: 2;
+        }
+
+        /* Large devices (>= 992px) */
+        @media (min-width: 992px) {
+            .btn-custom {
+                margin: 3px;
+                /* Margin of 3px around buttons on large devices */
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="collapse" id="collapseSearchBox" style="background-color: grey; padding: 10px;">
+        <div class="d-flex justify-content-center">
+            <input id="searchinput" type="text" style="width: 50vw;">
+        </div>
+    </div>
+
+    <!--This is not working as intended, but works on other pages?-->
+    <script>
+        $(document).ready(function () {
+            $('#searchinput').on('keyup', function () {
+                // Get the search keyword and convert it to lowercase
+                let keywords = $(this).val().toLowerCase();
+
+                // Search through htmlform content divs
+                $('.searchable').filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(keywords) > -1);
+                });
+            });
+        });
+    </script>
+
+
+    <!--Navbar area-->
+    <!--Website: getboostrap.com -> components -> Navbar: https://getbootstrap.com/docs/5.3/components/navbar/ -->
+    <nav class="navbar navbar-expand-lg" style="height: 10vh; background-color: var(--navbar-color);">
+        <div class="container-fluid">
+
+            <!--Tagline-->
+            <a class="navbar-brand" href="index.html"><span class="bi bi-globe"></span>ITWD6.408</a>
+
+            <!--Search Button small screen-->
+            <button class="btn d-inline d-lg-none" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseSearchBox">
+                <span class=" fs-2 bi bi-search"></span>
+            </button>
+
+            <!--Button: text on it is a sandwich icon-->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+
+            <!--Collapse navbar-->
+            <!--centralize navbar on large screens-->
+            <div class="collapse navbar-collapse d-lg-flex justify-content-center" id="navbarNavAltMarkup">
+                <div class="navbar-nav w-50 float-end" style="background-color: var(--navbar-color)" ;>
+                    <a class="nav-link text-end" aria-current="page" href="index.html">HOME</a>
+                    <a class="nav-link active text-end bg-warning" href="form.html">FORMS</a>
+                    <a class="nav-link text-end" href="xml-rss.html">XML/RSS</a>
+                    <a class="nav-link text-end" href="js-demo.html">JAVASCRIPT</a>
+                    <a class="nav-link text-end" href="my-research.html">RESEARCH</a>
+                </div>
+            </div>
+
+            <!--Search Button large screen-->
+            <button class="btn d-none d-lg-inline" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseSearchBox">
+                <span class=" fs-2 bi bi-search"></span>
+            </button>
+
+        </div>
+    </nav>
+
+    <main class="row container-fluid" style="min-height: 85vh;">
+
+        <div class="col-12 col-md-3">
+            <div class="row justify-content-center justify-content-md-start mx-0 mx-sm-auto ms-md-2">
+
+
+                <button id="htmlFormButton" class="col-6 col-md-12 btn btn-custom active" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#htmlform" aria-expanded="false"
+                    aria-controls="collapseExample">
+                    HTML FORM
+                </button>
+
+                <button id="googleFormButton" class="col-6 col-md-12 btn btn-custom" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#googleform" aria-expanded="false"
+                    aria-controls="collapseExample">
+                    GOOGLE FORM
+                </button>
+
+
+            </div>
+        </div>
+
+        <!--HTML FORM-->
+        <div class="col-12 col-md-9">
+            <div class="collapse show searchable" id="htmlform">
+                <div class="text-center mb-4"> <!-- Centering container for the heading -->
+                    <h1>Mobile Technology Form</h1>
+                </div>
+                <div class="card card-body" style="min-height: 70vh;">
+
+                    <div class="container mt-4">
+
+                        <form>
+                            <div class="form-group row" style="margin-top: 5px;">
+                                <label for="firstName" class="col-sm-2 col-form-label">First Name:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="firstName" placeholder="First Name"
+                                        required>
+                                </div>
+                            </div>
+                            <div class="form-group row" style="margin-top: 5px;">
+                                <label for="lastName" class="col-sm-2 col-form-label">Last Name:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="lastName" placeholder="Last Name"
+                                        required>
+                                </div>
+                            </div>
+
+                            <br>
+
+                            <label class="fw-bold">Address</label>
+
+                            <div class="form-group row" style="margin-top: 5px;">
+                                <label for="line1" class="col-sm-2 col-form-label">Line 1:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="line1" placeholder="Line 1" required>
+                                </div>
+                            </div>
+                            <div class="form-group row" style="margin-top: 5px;">
+                                <label for="line2" class="col-sm-2 col-form-label">Line 2:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="line2" placeholder="Line 2">
+                                </div>
+                            </div>
+                            <div class="form-group row" style="margin-top: 5px;">
+                                <label for="city" class="col-sm-2 col-form-label">Town/City:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="city" placeholder="Town/City" required>
+                                </div>
+                            </div>
+
+                            <br>
+
+                            <div class="form-group row" style="margin-top: 5px;">
+                                <label class="col-sm-2 col-form-label">Gender:</label>
+                                <div class="col-sm-10">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="gender" id="male"
+                                            value="male" required>
+                                        <label class="form-check-label" for="male">Male</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="gender" id="female"
+                                            value="female" required>
+                                        <label class="form-check-label" for="female">Female</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="gender" id="other"
+                                            value="other" required>
+                                        <label class="form-check-label" for="other">Other</label>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group row" style="margin-top: 5px;">
+                                <label class="col-sm-2 col-form-label">Mobile Phone Type:</label>
+                                <div class="col-sm-10">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="windows" value="Windows">
+                                        <label class="form-check-label" for="windows">Windows</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="apple" value="Apple">
+                                        <label class="form-check-label" for="apple">Apple</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="android" value="Android">
+                                        <label class="form-check-label" for="android">Android</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="other" value="Other">
+                                        <label class="form-check-label" for="other">Other</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row" style="margin-top: 5px;">
+                                <label for="mobileProvider" class="col-sm-2 col-form-label">Mobile Provider:</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" id="mobileProvider" required>
+                                        <option value="">None</option>
+                                        <option value="Spark">Spark</option>
+                                        <option value="One">One</option>
+                                        <option value="2 Degrees">2 Degrees</option>
+                                        <option value="Now">Now</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group row" style="margin-top: 5px;">
+                                <label for="studyPhone" class="col-sm-2 col-form-label">Do you use your phone for study?
+                                    Please explain:</label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" id="studyPhone" rows="3"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group row" style="margin-top: 5px;">
+                                <div class="col-sm-10 offset-sm-2">
+                                    <button type="reset" class="btn btn-custom" style="color: black;">Reset</button>
+                                    <button type="submit" class="btn btn-custom" style="color: black;">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GOOGLE FORM -->
+            <div class="collapse searchable" id="googleform">
+                <div class="card card-body" style="min-height: 70vh;">
+                    <div class="container-fluid d-flex justify-content-center">
+                        <!-- Bootstrap classes to control width at different breakpoints -->
+                        <iframe
+                            src="https://docs.google.com/forms/d/e/1FAIpQLScXhHKYBm-6Zlg39EjA5WrrJFO7RjGDvfepZ5Vq82nNe6j5gg/viewform?embedded=true"
+                            width="640" height="1811" frameborder="0" marginheight="0" marginwidth="0">
+                            Loading…
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+
+    </main>
+
+    <!-- Footer area -->
+    <footer style="background-color: var(--navbar-color);">
+        <div class="container">
+            <!-- Footer content -->
+            <div class="row text-center text-md-start">
+                <!-- Social media div -->
+                <div class="col-12 col-md-4 mb-3 mb-md-0 d-flex justify-content-center justify-content-md-start">
+                    <a href="https://www.facebook.com" class="mx-2"><span class="fs-1 bi bi-facebook"
+                            style="color:blue;"></span></a>
+                    <a href="https://www.twitter.com" class="mx-2"><span class="fs-1 bi bi-twitter"
+                            style="color:lightblue;"></span></a>
+                    <a href="https://www.youtube.com" class="mx-2"><span class="fs-1 bi bi-youtube"
+                            style="color:red;"></span></a>
+                    <a href="https://www.instagram.com" class="mx-2"><span class="fs-1 bi bi-instagram"
+                            style="color:pink;"></span></a>
+                    <a href="https://www.linkedin.com" class="mx-2"><span class="fs-1 bi bi-linkedin"
+                            style="color:white;"></span></a>
+                </div>
+
+                <!-- Copyright div -->
+                <div class="col-6 col-md-4 mb-3 mb-md-0 d-flex justify-content-center align-items-center">
+                    <p class="fs-5 mb-0"><span class="bi bi-c-circle"></span> 2024 Rhys Bates</p>
+                </div>
+
+                <!-- Privacy policy div -->
+                <div
+                    class="col-6 col-md-4 mb-3 mb-md-0 d-flex justify-content-center justify-content-md-end align-items-center">
+                    <a href="privacypolicy.html" class="fs-5">PRIVACY POLICY</a>
+                </div>
+            </div>
+    </footer>
+
+
+
+
+    <!--Custom javascript to make active button yellow, and make only one form visible at a time-->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const htmlFormButton = document.getElementById('htmlFormButton');
+            const googleFormButton = document.getElementById('googleFormButton');
+            const htmlForm = document.getElementById('htmlform');
+            const googleForm = document.getElementById('googleform');
+
+            function setActiveButton(activeButton) {
+                htmlFormButton.classList.remove('active');
+                googleFormButton.classList.remove('active');
+                activeButton.classList.add('active');
+            }
+
+            function showHtmlForm() {
+                htmlForm.classList.add('show');
+                googleForm.classList.remove('show');
+                setActiveButton(htmlFormButton);
+            }
+
+            function showGoogleForm() {
+                htmlForm.classList.remove('show');
+                googleForm.classList.add('show');
+                setActiveButton(googleFormButton);
+            }
+
+            // Set the default active button
+            showHtmlForm();
+
+            htmlFormButton.addEventListener('click', showHtmlForm);
+            googleFormButton.addEventListener('click', showGoogleForm);
+        });
+    </script>
+
+    <!--Insert Bootstrap Javascript and JQuery-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>

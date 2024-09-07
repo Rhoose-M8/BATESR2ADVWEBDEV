@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Page Title-->
+    <title>Form - ITWD6.408 - BATESR2</title>
+    <!--Page Icon-->
+    <link rel="icon" href="Images/pageicon.png" type="image/x-icon">
+
+    <!--Insert Bootstrap CSS here-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!--Insert Bootstrap Icons CSS-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!--Insert Bootstrap Javascript and JQuery-->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <style>
+        :root {
+            --navbar-color: #DAF7A6;
+        }
+
+
+        /* Base button styles */
+        .btn-custom {
+            color: blue;
+            /* Blue text color for both buttons */
+            background-color: white;
+            /* White background for inactive buttons */
+            border: 1px solid black;
+            /* 1px black border */
+            border-radius: 0;
+            /* Square corners */
+        }
+
+        /* Active button styles */
+        .btn-custom.active {
+            background-color: #FFC107;
+            /* Warning color background for the active button */
+            color: blue;
+            /* Text color for active button */
+        }
+
+        /* Hover effect */
+        .btn-custom:hover {
+            color: blue;
+            /* Text color on hover */
+            border: 1px solid black;
+            /* Border color on hover */
+            opacity: 1;
+            /* Ensure button is fully opaque on hover */
+            transition: none;
+            /* Remove Bootstrap's transition effect */
+        }
+
+        .item-bg {
+            background-color: lightgray;
+        }
+
+
+
+        /* Large devices (>= 992px) */
+        @media (min-width: 992px) {
+            .btn-custom {
+                margin: 3px;
+                /* Margin of 3px around buttons on large devices */
+            }
+        }
+
+        /*This pushes the drop down section of the navbar to the "top" of the screen so it is visible*/
+        #navbarNavAltMarkup {
+            z-index: 2;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!--search area/search box/search button-->
+    <div class="collapse" id="collapseSearchBox" style="background-color: grey; padding: 10px;">
+        <div class="d-flex justify-content-center">
+            <input id="searchinput" type="text" style="width: 50vw;">
+        </div>
+    </div>
+
+    <!--THIS IS WORKING-->
+    <script>
+        $(document).ready(function () {
+            $('#searchinput').on('keyup', function () {
+                // Get the search keyword and convert it to lowercase
+                let keywords = $(this).val().toLowerCase();
+
+                // Search through RSS content divs
+                $('#RSScontent > div').filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(keywords) > -1);
+                });
+
+                // Search through XML content divs
+                $('#XMLcontent > div').filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(keywords) > -1);
+                });
+            });
+        });
+    </script>
+
+
+    <!--Navbar area-->
+    <!--Website: getboostrap.com -> components -> Navbar: https://getbootstrap.com/docs/5.3/components/navbar/ -->
+    <nav class="navbar navbar-expand-lg" style="height: 10vh; background-color: var(--navbar-color);">
+        <div class="container-fluid">
+
+            <!--Tagline-->
+            <a class="navbar-brand" href="index.html"><span class="bi bi-globe"></span>ITWD6.408</a>
+
+            <!--Search Button small screen-->
+            <button class="btn d-inline d-lg-none" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseSearchBox">
+                <span class=" fs-2 bi bi-search"></span>
+            </button>
+
+            <!--Button: text on it is a sandwich icon-->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+
+            <!--Collapse navbar-->
+            <!--centralize navbar on large screens-->
+            <div class="collapse navbar-collapse d-lg-flex justify-content-center" id="navbarNavAltMarkup">
+                <div class="navbar-nav w-50 float-end" style="background-color: var(--navbar-color)" ;>
+                    <a class="nav-link text-end" aria-current="page" href="index.html">HOME</a>
+                    <a class="nav-link text-end" href="form.html">FORMS</a>
+                    <a class="nav-link active text-end bg-warning" href="xml-rss.html">XML/RSS</a>
+                    <a class="nav-link text-end" href="js-demo.html">JAVASCRIPT</a>
+                    <a class="nav-link text-end" href="my-research.html">RESEARCH</a>
+                </div>
+            </div>
+
+            <!--Search Button large screen-->
+            <button class="btn d-none d-lg-inline" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseSearchBox">
+                <span class=" fs-2 bi bi-search"></span>
+            </button>
+
+        </div>
+    </nav>
+
+    <main class="row container-fluid" style="min-height: 85vh;">
+
+        <div class="col-12 col-md-3">
+            <div class="row justify-content-center justify-content-md-start mx-0 mx-sm-auto ms-md-2">
+
+
+                <button id="XMLdivButton" class="col-6 col-md-12 btn btn-custom active" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#XMLdiv" aria-expanded="false"
+                    aria-controls="collapseExample">
+                    XML RULES
+                </button>
+
+                <button id="RSSdivButton" class="col-6 col-md-12 btn btn-custom" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#RSSdiv" aria-expanded="false" aria-controls="collapseExample">
+                    RSS
+                </button>
+
+
+            </div>
+        </div>
+
+        <div class="col-12 col-md-9">
+            <!-- XML CONTENT -->
+            <div class="collapse show" id="XMLdiv">
+
+                <h4>XML Syntax Rules</h4>
+                <p>6 rules that must be adhered to in order to create a valid XML file:</p>
+                <div class="row" id="XMLcontent"></div>
+
+                <script>
+                    // Using jQuery AJAX to load the XML file
+                    $.ajax({
+                        method: 'GET',
+                        url: 'xml-rules.xml',
+                        dataType: 'xml',
+                        error: function (e) {
+                            alert('ERROR: Could not load XML file');
+                            console.log('ERROR:', e);
+                        },
+                        success: function (data) {
+                            // Extract title and description from the XML
+                            var title = $(data).find('title').text();
+                            var description = $(data).find('description').text();
+
+
+                            // Loop through each rule set and display
+                            $(data).find('rule').each(function () {
+                                var heading = $(this).find('heading').text();
+                                var description = $(this).find('description').text();
+                                var example = $(this).find('example').html(); // Use .html() to keep the example's formatting
+
+                                $('#XMLcontent').append(
+                                    '<div class="col-12 col-md-6">' +
+                                    '<div class="m-1 p-1 item-bg border border-dark rounded mb-1" style= "min-height: 33vh;">' +
+                                    '<h4>' + heading + '</h4>' +
+                                    '<p>' + description + '</p>' +
+                                    '<p class="text-primary"><strong>Example:</strong> ' + example + '</p>' +
+                                    '</div>' +
+                                    '</div>'
+                                );
+                            });
+                        }
+                    });
+                </script>
+
+            </div>
+
+            <!-- RSS CONTENT -->
+
+            <div class="collapse" id="RSSdiv">
+
+                <h4>Work with an XML RSS Feed</h4>
+                <p>Use XMLHTTPRequest object to retrieve an RSS feed</p>
+                <div class="row" id="RSScontent"></div>
+                <script>
+                    //USE JQUERY AJAX
+                    let proxy = 'https://cors-anywhere.herokuapp.com/';
+                    $.ajax({
+                        method: 'GET',
+                        url: proxy + 'https://www.nasa.gov/rss/dyn/educationnews.rss',
+                        dataType: 'xml',
+                        error: function (e) {
+                            alert('ERROR!')
+                            console.log('ERROR:' + e)
+                        },
+                        success: function (data) {
+                            //Loop through all rules and extract heading, description, examples
+                            $(data).find('item').each(function () {
+                                //find heading, description, example tags
+                                var title = $(this).find('title').text();
+                                var link = $(this).find('link').text();
+                                var pubDate = $(this).find('pubDate').text();
+                                var description = $(this).find('description').text();
+
+                                $('#RSScontent').append(
+                                    '<div class ="col-12 col-md-6">' +
+                                    '<div class="m-1 p-1 item-bg border border-dark rounded mb-1" style="min-height: 55vh;">' +
+                                    '<h4>' + title + '</h4>' +
+                                    '<p>' + link + '</p>' +
+                                    '<p>' + description + '</p>' +
+                                    '<br>' +
+                                    '<p class="text-primary">' + pubDate + '</p>' +
+                                    '</div>' +
+                                    '</div>'
+                                );
+                            });
+                        }
+                    });
+                </script>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer area -->
+    <footer style="background-color: var(--navbar-color);">
+        <div class="container">
+            <!-- Footer content -->
+            <div class="row text-center text-md-start">
+                <!-- Social media div -->
+                <div class="col-12 col-md-4 mb-3 mb-md-0 d-flex justify-content-center justify-content-md-start">
+                    <a href="https://www.facebook.com" class="mx-2"><span class="fs-1 bi bi-facebook"
+                            style="color:blue;"></span></a>
+                    <a href="https://www.twitter.com" class="mx-2"><span class="fs-1 bi bi-twitter"
+                            style="color:lightblue;"></span></a>
+                    <a href="https://www.youtube.com" class="mx-2"><span class="fs-1 bi bi-youtube"
+                            style="color:red;"></span></a>
+                    <a href="https://www.instagram.com" class="mx-2"><span class="fs-1 bi bi-instagram"
+                            style="color:pink;"></span></a>
+                    <a href="https://www.linkedin.com" class="mx-2"><span class="fs-1 bi bi-linkedin"
+                            style="color:white;"></span></a>
+                </div>
+
+                <!-- Copyright div -->
+                <div class="col-6 col-md-4 mb-3 mb-md-0 d-flex justify-content-center align-items-center">
+                    <p class="fs-5 mb-0"><span class="bi bi-c-circle"></span> 2024 Rhys Bates</p>
+                </div>
+
+                <!-- Privacy policy div -->
+                <div
+                    class="col-6 col-md-4 mb-3 mb-md-0 d-flex justify-content-center justify-content-md-end align-items-center">
+                    <a href="privacypolicy.html" class="fs-5">PRIVACY POLICY</a>
+                </div>
+            </div>
+    </footer>
+
+    <!--Custom javascript to make active button yellow, and make only one form visible at a time-->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const XMLdivButton = document.getElementById('XMLdivButton');
+            const RSSdivButton = document.getElementById('RSSdivButton');
+            const XMLdiv = document.getElementById('XMLdiv');
+            const RSSdiv = document.getElementById('RSSdiv');
+
+            function setActiveButton(activeButton) {
+                XMLdivButton.classList.remove('active');
+                RSSdivButton.classList.remove('active');
+                activeButton.classList.add('active');
+            }
+
+            function showXMLdiv() {
+                XMLdiv.classList.add('show');
+                RSSdiv.classList.remove('show');
+                setActiveButton(XMLdivButton);
+            }
+
+            function showRSSdiv() {
+                XMLdiv.classList.remove('show');
+                RSSdiv.classList.add('show');
+                setActiveButton(RSSdivButton);
+            }
+
+            // Set the default active button
+            showXMLdiv();
+
+            XMLdivButton.addEventListener('click', showXMLdiv);
+            RSSdivButton.addEventListener('click', showRSSdiv);
+        });
+    </script>
+
+    <!--Insert Bootstrap Javascript and JQuery-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

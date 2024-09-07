@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--Page Title-->
+  <title>Home - ITWD6.408 - BATESR2</title>
+  <!--Page Icon-->
+  <link rel="icon" href="Images/pageicon.png" type="image/x-icon">
+
+  <!--Insert Bootstrap CSS here-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+  <!--Insert Bootstrap Icons CSS-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <!--Insert Bootstrap Javascript and JQuery-->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <style>
+    /*PUT ALL CSS STYLING IN THIS SECTION HERE*/
+    :root {
+      --navbar-color: #DAF7A6;
+      --showcase-color: #000000;
+      --bio-color: #FFC300;
+      --webtech-color: #EC7063;
+      --competence-color: #9CDA0D;
+      --statement-color: #F27A09;
+    }
+
+    .bg-image {
+      background-image: url("Images/kitchen.jpg");
+
+      /*blur effect forimage */
+      filter: blur(8px);
+      -webkit-filter: blur(8px);
+
+      /* make the image full height */
+      height: 100%;
+
+      /* Center and scale the image nicely */
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: 100%;
+    }
+
+    /*Text for showcase*/
+    .bg-text {
+      background-color: rgb(0, 0, 0);
+      background-color: rgba(0, 0, 0, 0.4);
+      color: white;
+      font-weight: bold;
+      border: 3px solid #f1f1f1;
+      position: relative;
+      top: -50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80%;
+      padding: 10px;
+      text-align: center;
+    }
+
+    /*This pushes the drop down section of the navbar to the "top" of the screen so it is visible*/
+    #navbarNavAltMarkup {
+      z-index: 2;
+    }
+
+    .flip-box {
+      background-color: transparent;
+      width: 100%;
+      height: 35vh;
+      border: 1px solid #f1f1f1;
+      perspective: 1000px;
+    }
+
+    .flip-box-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+    }
+
+    .flip-box:hover .flip-box-inner {
+      transform: rotateY(180deg);
+    }
+
+    .flip-box-front,
+    .flip-box-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+    }
+
+    .flip-box-front {
+      background-color: #bbb;
+      color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      /* Stack elements vertically */
+      height: 100%;
+      /* Ensure it takes up the full height */
+      text-align: center;
+    }
+
+    .flip-box-back {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      /* Ensure the flip-box-back takes up the full height */
+      text-align: center;
+      background-color: dodgerblue;
+      color: white;
+      transform: rotateY(180deg);
+    }
+
+    .flip-box-back .fa-star {
+      font-size: 3em;
+      /* Increase the star size */
+    }
+
+    #flipimg {
+      height: 20vh;
+      border-radius: 50%;
+    }
+
+    .webtechnologyheading {
+      font-size: 30px;
+      font-weight: 700;
+    }
+
+    .webtechnologyheading-2 {
+      font-size: 14px;
+      font-weight: 500;
+      color: blue;
+    }
+
+    .technology-heading {
+      height: 50px;
+      margin-left: 10px;
+      color: black;
+      font-size: 12px;
+      font-weight: 300;
+    }
+
+    .technology-heading span {
+      color: blue;
+      font-size: 14px;
+      font-weight: 400;
+    }
+
+    .web-tech-li li {
+      margin-top: 20px;
+      font-size: 14px;
+    }
+
+    #FlipTitle {
+      color: blue;
+    }
+
+    .checked {
+      color: orange;
+    }
+  </style>
+
+</head>
+
+<body>
+  <!--search area/search box/search button-->
+  <div class="collapse" id="collapseSearchBox" style="background-color: grey; padding: 10px;">
+    <div class="d-flex justify-content-center">
+      <input id="searchinput" type="text" style="width: 50vw;">
+    </div>
+  </div>
+
+  <script>
+    $(document).ready(function () {
+      $('#searchinput').on('keyup', function () {
+        // Get the search keyword and convert it to lowercase
+        let keywords = $(this).val().toLowerCase();
+
+        // Search through RSS content divs
+        $('.searchable').filter(function () {
+          $(this).toggle($(this).text().toLowerCase().indexOf(keywords) > -1);
+        });
+      });
+    });
+  </script>
+
+
+  <!--Navbar area-->
+  <!--Website: getboostrap.com -> components -> Navbar: https://getbootstrap.com/docs/5.3/components/navbar/ -->
+  <nav class="navbar navbar-expand-lg" style="height: 10vh; background-color: var(--navbar-color);">
+    <div class="container-fluid">
+
+      <!--Tagline-->
+      <a class="navbar-brand" href="index.html"><span class="bi bi-globe"></span>ITWD6.408</a>
+
+      <!--Search Button small screen-->
+      <button class="btn d-inline d-lg-none" type="button" data-bs-toggle="collapse"
+        data-bs-target="#collapseSearchBox">
+        <span class=" fs-2 bi bi-search"></span>
+      </button>
+
+      <!--Button: text on it is a sandwich icon-->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+
+      <!--Collapse navbar-->
+      <!--centralize navbar on large screens-->
+      <div class="collapse navbar-collapse d-lg-flex justify-content-center" id="navbarNavAltMarkup">
+        <div class="navbar-nav w-50 float-end" style="background-color: var(--navbar-color)" ;>
+          <a class="nav-link active text-end bg-warning" aria-current="page" href="index.html">HOME</a>
+          <a class="nav-link text-end" href="form.html">FORMS</a>
+          <a class="nav-link text-end" href="xml-rss.html">XML/RSS</a>
+          <a class="nav-link text-end" href="js-demo.html">JAVASCRIPT</a>
+          <a class="nav-link text-end" href="my-research.html">RESEARCH</a>
+        </div>
+      </div>
+
+      <!--Search Button large screen-->
+      <button class="btn d-none d-lg-inline" type="button" data-bs-toggle="collapse"
+        data-bs-target="#collapseSearchBox">
+        <span class=" fs-2 bi bi-search"></span>
+      </button>
+
+    </div>
+  </nav>
+
+  <main>
+    <!--Showcase Section-->
+    <section class="container-fluid searchable" style="height: 30vh;" id="Showcase">
+      <div class="bg-image"></div>
+      <div class="bg-text">
+        <p>Advanced Internet and Web Page Development</p>
+        <h1>I am Rhys Bates</h1>
+        <p>And I'm a Web Developer</p>
+      </div>
+      </div>
+    </section>
+
+
+    <div class="container-fluid">
+      <div class="row">
+
+        <!--Bio Section-->
+        <section class="col-12 col-lg-6 searchable" style="min-height: 30vh; background-color: var(--bio-color); padding: 20px;"
+          id="Bio">
+          <h3>BIO</h3>
+          <div class="container">
+            <div class="row">
+              <!-- Avatar -->
+              <div class="col-lg-6 col-12 d-flex justify-content-center align-items-center mb-4 mb-lg-0">
+                <img style="max-width:20vw; height: auto;" class="rounded-circle" src="Images/rhoose.png" alt="avatar">
+              </div>
+
+              <!-- About Me -->
+              <div class="col-lg-6 col-12">
+                <p class="sub-item">I am Rhys Bates. I am a student at EIT Taradale Campus. I am studying for a
+                  Bachelors Degree in Computing Systems.</p>
+                <p class="sub-item">I like to play video games and listen to rock music. I was a qualified chef for 7
+                  years. I have decided to change from working in hospitality to working in IT as I believe it will
+                  introduce a higher quality of life for me.</p>
+                <p class="sub-item">I am studying Advanced Web Page Development as a passion project - I really enjoyed
+                  the web development class in Level 5 and want to further develop my skills and understanding of what
+                  goes into the creation of a modern website.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!--Web technologies section-->
+        <section class="col-12 col-lg-6 searchable" id="WebTech"
+          style="min-height: 30vh; background-color: var(--webtech-color); padding: 20px;">
+          <h3 class="webtechnologyheading">My Web Technologies</h3>
+          <h4 class="webtechnologyheading-2">TOP 5 WEB TECHNOLOGIES</h4>
+          <div class="web-tech">
+            <ol class="web-tech-li">
+              <li class="technology-heading"><span>Web Hosting:</span> GitHub Pages allows for the seamless hosting of
+                static websites directly from GitHub repositories, providing an easy and free way to deploy and manage
+                your web projects with version control.</li> <br>
+              <li class="technology-heading"><span>Web Browser:</span> Google Chrome’s developer tools offer a
+                comprehensive suite of features for testing, debugging, and optimizing web applications, making it an
+                indispensable tool for web developers.</li> <br>
+              <li class="technology-heading"><span>Storage:</span> Google Drive provides robust cloud storage solutions,
+                enabling easy access, sharing, and collaboration on files from anywhere with an internet connection.
+              </li> <br>
+              <li class="technology-heading"><span>Code Editor:</span> Microsoft Visual Studio Code (VS Code) is
+                essential for web development due to its robust features, extensibility through plugins, and strong
+                community support, making it easier to write, debug, and manage code efficiently.</li> <br>
+              <li class="technology-heading"><span>Web Framework:</span> Bootstrap 5.0 simplifies the process of
+                designing and building modern, responsive web pages, allowing for quick prototyping.</li> <br>
+            </ol>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!--Competencies Section-->
+    <section class="searchable" style="min-height: 30vh; background-color: var(--competence-color); padding: 20px;" id="Competency">
+      <h3>My Web Development Competencies</h3>
+      <section class="container">
+        <div class="row">
+          <div class="col-12 col-lg-4" style="padding: 10px;">
+            <div class="flip-box">
+              <div class="flip-box-inner">
+                <div class="flip-box-front">
+                  <h3 id="FlipTitle">MARKUP</h3>
+                  <h3 id="FlipTitle">(HTML5)</h3>
+                  <img src="Images/html5.png" id="flipimg"></img>
+                </div>
+                <div class="flip-box-back">
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star"></span>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-lg-4" style="padding: 10px;">
+            <div class="flip-box">
+              <div class="flip-box-inner">
+                <div class="flip-box-front">
+                  <h3 id="FlipTitle">STYLING</h3>
+                  <h3 id="FlipTitle">(CSS3)</h3>
+                  <img src="Images/css3.png" id="flipimg"></img>
+                </div>
+                <div class="flip-box-back">
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star"></span>
+                  <span class="fa fa-star"></span>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-lg-4" style="padding: 10px;">
+            <div class="flip-box">
+              <div class="flip-box-inner">
+                <div class="flip-box-front">
+                  <h3 id="FlipTitle">INTERACTIVITY</h3>
+                  <h3 id="FlipTitle">(JavaScript)</h3>
+                  <img src="Images/javascript.png" id="flipimg"><img>
+                </div>
+                <div class="flip-box-back">
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star"></span>
+                  <span class="fa fa-star"></span>
+                  <span class="fa fa-star"></span>
+                  <span class="fa fa-star"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!--Authenticity Section-->
+    <section class="container-fluid searchable" style="background-color: var(--statement-color); padding: 20px 0;"
+      id="Authenticity">
+      <h3 class="container">Statement Of Authenticity</h3>
+      <p class="container">
+        I confirm that:<br><br>
+        This is an original assessment and is entirely my own work.<br><br>
+        It contains no material previously published or written by another person or myself except where due
+        acknowledgement is made in the text.<br><br>
+        No material which to a substantial extent, has been submitted for any other academic course, is included
+        without acknowledgement.
+      </p>
+    </section>
+  </main>
+
+  <!-- Footer area -->
+  <footer style="background-color: var(--navbar-color);">
+    <div class="container">
+      <!-- Footer content -->
+      <div class="row text-center text-md-start">
+        <!-- Social media div -->
+        <div class="col-12 col-md-4 mb-3 mb-md-0 d-flex justify-content-center justify-content-md-start">
+          <a href="https://www.facebook.com" class="mx-2"><span class="fs-1 bi bi-facebook"
+              style="color:blue;"></span></a>
+          <a href="https://www.twitter.com" class="mx-2"><span class="fs-1 bi bi-twitter"
+              style="color:lightblue;"></span></a>
+          <a href="https://www.youtube.com" class="mx-2"><span class="fs-1 bi bi-youtube" style="color:red;"></span></a>
+          <a href="https://www.instagram.com" class="mx-2"><span class="fs-1 bi bi-instagram"
+              style="color:pink;"></span></a>
+          <a href="https://www.linkedin.com" class="mx-2"><span class="fs-1 bi bi-linkedin"
+              style="color:white;"></span></a>
+        </div>
+
+        <!-- Copyright div -->
+        <div class="col-6 col-md-4 mb-3 mb-md-0 d-flex justify-content-center align-items-center">
+          <p class="fs-5 mb-0"><span class="bi bi-c-circle"></span> 2024 Rhys Bates</p>
+        </div>
+
+        <!-- Privacy policy div -->
+        <div
+          class="col-6 col-md-4 mb-3 mb-md-0 d-flex justify-content-center justify-content-md-end align-items-center">
+          <a href="privacypolicy.html" class="fs-5">PRIVACY POLICY</a>
+        </div>
+      </div>
+  </footer>
+
+
+  <!--Insert Bootstrap Javascript and JQuery-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
